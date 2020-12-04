@@ -1,5 +1,5 @@
 
-file = open("2020/Day1/input_data.txt", "r")
+file = open("2020/day1/input_data.txt", "r")
 
 list = file.readlines()
 int_list = [int(i) for i in list]
