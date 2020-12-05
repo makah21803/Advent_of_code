@@ -13,6 +13,6 @@ for i, numA in enumerate(int_list):
                 if numA + numB + numC == 2020:
                     mult = numA * numB * numC
                     print('Finished, {0} + {1} + {2} is 2020 \n their multiple is {3}'.format(numA, numB, numC, mult))
-                    break
+                    
 
 print('finished')

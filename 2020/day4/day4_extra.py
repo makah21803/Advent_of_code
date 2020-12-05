@@ -74,10 +74,8 @@ for passport in passports:
                 else:
                     valid = False
                 # todo: why this didnt work?
-                if re.search('0-9', value) and len(value) != 9:
-                    continue
-                else:
-                    valid = False
+                # if not re.search('0-9', value) or len(value) != 9:
+                #     valid = False
 
             elif field == "cid":
                 continue
