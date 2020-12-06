@@ -26,7 +26,6 @@ class main():
             row = row_list[0]
             col = col_list[0]
             id = row*8 + col
-            # print('{}: row {}, column {}, seat ID {}.'.format(line, row, col, id))
 
             all_ids.append(id)
 
