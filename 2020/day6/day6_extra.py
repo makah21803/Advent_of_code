@@ -1,6 +1,8 @@
+import os
 import re
 
-file = open("2020/day6/input_data.txt", "r")
+dirname = os.path.dirname(__file__)
+file = open(dirname+"/input_data.txt", "r")
 
 list = file.readlines()
 
@@ -13,7 +15,6 @@ for i, line in enumerate(list):
         answers = [l for l in answer_first if l not in answers_wrong]
         answers.sort()
         all_groups.append(answers)
-        print(answers)
         answers = []
         answers_wrong = []
         if i+1 < len (list):
