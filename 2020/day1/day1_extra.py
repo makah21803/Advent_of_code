@@ -1,5 +1,8 @@
+import os
+import re
 
-file = open("2020/day1/input_data.txt", "r")
+dirname = os.path.dirname(__file__)
+file = open(dirname+"/input_data.txt", "r")
 
 list = file.readlines()
 int_list = [int(i) for i in list]
