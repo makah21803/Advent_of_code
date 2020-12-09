@@ -26,7 +26,7 @@ class Bag():
         content = []
         for  slice in rules.split(','):
              if not re.search('no other', slice):
-                bag = re.sub('bags|bag|\.', '', slice).strip()
+                bag = re.sub('bags?|\.', '', slice).strip()
                 n = 1
                 if re.search('^[0-9]', bag):
                     n = int(bag.split(' ')[0])
@@ -34,7 +34,6 @@ class Bag():
                     
                 content.extend([bag for i in range(n)])
         return content
-
 
 
 bags = {}
@@ -53,10 +52,8 @@ for bag in bags:
     if 'shiny gold' in bags[bag].content:
         count += 1
     if bag == 'shiny gold':
-        print ('shiny is there')
+        print ('shiny gold bag found')
         inside_shiny = bags[bag].num_of_bags_inside()
         
-
 print ('Shiny gold bag can be carried in {} different bags.'.format(count))
-
 print ('Shiny gold bag must contain {} other bags'.format(inside_shiny))
