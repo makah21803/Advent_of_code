@@ -71,8 +71,6 @@ class Day11():
 
         return adjacement
 
-        # adjacement = [list[r][c] for r, c in coords if r not in self.row_limits and c not in self.col_limits]
-
 
 final_list = Day11(input_list).run()
 
