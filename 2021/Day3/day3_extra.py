@@ -33,15 +33,16 @@ class OxygenLevels():
             entries = entries_tmp
 
             if len(entries) == 1:
+                return entries[0]
                 break
-        return entries[0]
+        return False
 
 
 oxygen_levels = OxygenLevels(list).run()
 oxy = int(oxygen_levels[0], 2)
 coo = int(oxygen_levels[1], 2)
 
-print("gama: {}\nepsilon: {}\nanswer: {}".format(oxy, coo, oxy*coo))
+print("Oxygen: {}\nC02: {}\nanswer: {}".format(oxy, coo, oxy*coo))
 
 
 
