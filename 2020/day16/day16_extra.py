@@ -11,6 +11,7 @@ all_tickets = []
 setup_stage = 0
 ignore_next = False
 
+# sort teh main data to rules and tickets
 for line in input_list:
     if ignore_next:
         ignore_next = False
@@ -20,6 +21,7 @@ for line in input_list:
         ignore_next = True
         continue
 
+    #rules
     if setup_stage == 0:
         both_rules = []
         for rule_range in line.split(':')[-1].strip().split(' or '):
@@ -29,6 +31,7 @@ for line in input_list:
             both_rules.extend(rule)
         rules[line.split(':')[0].rstrip()] = both_rules
 
+    # tickets
     elif setup_stage == 1:
         my_ticket = [int(num.strip()) for num in line.split(',')]
         all_tickets.append(my_ticket)
@@ -37,7 +40,7 @@ for line in input_list:
         ticket_nums = [int(num.strip()) for num in line.split(',')]
         all_tickets.append(ticket_nums)
 
-
+# checking validity of tickets
 possible = []
 for name, numbers in rules.items():
     possible.extend(numbers)
@@ -56,6 +59,7 @@ for ticket in all_tickets:
 
 print('Validation number is: {}'.format(sum(invalid_nums)))
 
+# writing all possible fields per column
 possibilities = {}
 for n in range(len(my_ticket)):
     field_values = [ticket[n] for ticket in valid_tickets]
@@ -71,6 +75,7 @@ for n in range(len(my_ticket)):
 
     possibilities[n] = possible_fields
 
+# eliminating used possibilities
 for i in range(len(possibilities)):
     for field_num, field_names in possibilities.items():
         if len(field_names) == 1:
@@ -79,12 +84,13 @@ for i in range(len(possibilities)):
                     fnames.remove(field_names[0])
                     possibilities[fnum] = fnames
 
-
+# getting column numbers for departure fields
 required_field_nums = []
 for field_num, field_names in possibilities.items():
     if re.search('^departure', field_names[0]):
         required_field_nums.append(field_num)
 
+# getting answer
 answer = 1
 for i in required_field_nums:
     answer *= my_ticket[i]
