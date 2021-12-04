@@ -8,8 +8,8 @@ list = file.readlines()
 class OxygenLevels():
     def __init__(self, list):
         self.bin_len = len(list[0])
-        self.oxy_list = list = [s.strip() for s in list]
-        self.coo_list = list = [s.strip() for s in list]
+        self.oxy_list = [s.strip() for s in list]
+        self.coo_list = [s.strip() for s in list]
 
     def run(self):
         oxy = self.generator(self.oxy_list)
