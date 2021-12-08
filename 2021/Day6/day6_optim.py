@@ -23,10 +23,11 @@ row   day                                 fish born
 """
 
 
-days = 10000
+days = 100000
 
 day_rows = []
 birth_rows = []
+# birth_row_values = []
 for r in range(math.ceil(days/7)+1):
     day_rows.append([7 * r + 2 * i + 1 for i in range(r + 1)])
 
@@ -43,14 +44,14 @@ for fish_start in list:
     fish_in_model = 1
     fish_days = days - fish_start
 
-    model_rows = math.ceil(fish_days/7)
-    for r in range(model_rows):
+    # max day in row is i*7 + i*2, where I is row index
+    first_unsafe_row = math.floor(fish_days/9)
+    fish_in_model += sum(2**i for i in range(first_unsafe_row))
 
+    max_row = math.ceil(fish_days/7)
+    for r in range(first_unsafe_row, max_row):
         row_value = sum([b for i, b in enumerate(birth_rows[r]) if day_rows[r][i] <= fish_days])
         fish_in_model += row_value
-        # print(row_days)
-        # print(row_births)
-        # print(row_value)
 
     fish_total += fish_in_model
 
