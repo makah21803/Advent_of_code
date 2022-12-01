@@ -12,7 +12,7 @@ lines.pop(0)
 orig_rules_dict = {line.split(" -> ")[0]:line.split(" -> ")[1] for line in lines}
 rules_dict_low = {key:''.join([key[0], orig_rules_dict[key].lower(), key[-1]]) for key in orig_rules_dict.keys()}
 
-steps = 10
+steps = 40
 for i in range(steps):
     for pair in rules_dict_low.keys():
         substitude = rules_dict_low[pair]
@@ -20,6 +20,7 @@ for i in range(steps):
         if pair[0] == pair[-1]:
             input = re.sub(pair, substitude, input)
     input = input.upper()
+    print(i)
 
 output = input
 
@@ -39,6 +40,8 @@ print(frequency)
 print(max-min)
 
 
-
+crosses_row = []
+for cross in crosses:
+    crosses_row.append(cross[0])
 
 
