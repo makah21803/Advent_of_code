@@ -16,8 +16,10 @@ for line in list:
         sum += int(line)
 
 totals.sort()
-print(totals)
+
 print("Most calories one elf has is {}".format(totals[-1]))
+
+
 topElves = 0
 for i in range(3):
     i += 1
