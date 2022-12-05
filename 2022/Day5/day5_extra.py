@@ -38,11 +38,11 @@ for stack_n in range(1, n_stacks+1):
     print(stacks_dict[stack_n])
 
 
-
-
 """ Move crates """
-def move_crate(source, dest):
-    stacks_dict[dest].append(stacks_dict[source].pop())
+def move_crate(source, dest, n_crates=1):
+    crates = [stacks_dict[source].pop() for i in range(n_crates)]
+    crates.reverse()
+    stacks_dict[dest].extend(crates)
 
 for i in range(break_index+1, len(input_list)):
     command = input_list[i].split(" ")
@@ -50,8 +50,7 @@ for i in range(break_index+1, len(input_list)):
     source = int(command[3])
     destination = int(command[5])
 
-    for c in range(n_crates):
-        move_crate(source, destination)
+    move_crate(source, destination, n_crates)
 
 answer = "".join([stacks_dict[stack_n][-1] for stack_n in range(1, n_stacks+1)])
 
