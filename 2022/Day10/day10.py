@@ -11,7 +11,7 @@ input_list = [line.strip() for line in file.readlines()]
 
 
 
-class ClassName():
+class Display():
     def __init__(self, cmds):
         self.cycle_n = 0
         self.x = 1
@@ -65,8 +65,8 @@ class ClassName():
             print("".join(row))
 
 
-class_name = ClassName(input_list)
-print(f"Part One: {class_name.part_one()}\n===")
+device_display = Display(input_list)
+print(f"Part One: {device_display.part_one()}\n===")
 print("Part Two:\nThe display is still a bit broken at the start, \nbut you should be able to read most and guess the rest:")
-class_name.part_two()
+device_display.part_two()
 
