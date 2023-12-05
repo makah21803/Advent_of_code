@@ -94,13 +94,21 @@ class Almanach():
                     num_pair = None
                     break
 
-                # pair starts before ends inside
+                # pair starts before amd ends after
+                elif num_pair[0] < source < source + range_length <= num_pair[1]:
+                    new_num_pairs.append([destination, destination + range_length - 1])
+                    num_pair_1 = [num_pair[0], source - 1]
+                    num_pair_2 = [source + range_length, num_pair[1]]
+                    num_pair = num_pair_2 # todo: this is not universal, because I just disregard num_pair_1
+                    continue
+
+                # pair starts before and ends inside
                 elif num_pair[0] < source <= num_pair[1]:
                     new_num_pairs.append([destination, destination + (num_pair[1] - source)])
                     num_pair = [num_pair[0], source - 1]
                     continue
 
-                # pair starts inside ends outside
+                # pair starts inside and ends after
                 elif num_pair[0] < source + range_length <= num_pair[1]:
                     new_num_pairs.append([destination + (num_pair[0] - source), destination + range_length - 1])
                     num_pair = [source + range_length, num_pair[1]]
@@ -116,8 +124,6 @@ class Almanach():
         for num_pair in orig_num_pairs:
             new_num_pairs, next_source = self.extract_map(source, num_pair)
             num_pairs.extend(new_num_pairs)
-        # print(f"{source}s: {orig_num_pairs}")
-        # print(f"{source} to {next_source}: {num_pairs}\n")
         source = next_source
         if source != "location":
             num_pairs = self.loop_to_location(source, num_pairs)
@@ -136,7 +142,7 @@ class Almanach():
     def get_seed_pairs(self):
         seed_pairs = []
         for i, seed_first in enumerate(self.seed_numbers):
-            if i%2 != 0:
+            if i % 2 != 0:
                 continue
 
             seed_last = seed_first + self.seed_numbers[i + 1] - 1
@@ -147,7 +153,6 @@ class Almanach():
         locations = []
         for seed_pair in self.get_seed_pairs():
             location_pairs = self.loop_to_location("seed", [seed_pair,])
-            # print(f"{seed_pair} > {location_pairs}")
             locations.append(min([location_pair[0] for location_pair in location_pairs]))
         return min(locations)
 
