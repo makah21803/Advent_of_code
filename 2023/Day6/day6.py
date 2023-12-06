@@ -17,7 +17,6 @@ class BoatRace():
 
         self.new_time = int("".join([time.strip() for time in data[0].split(":")[-1].strip().split(" ") if time.strip() != ""]))
         self.new_distance = int("".join([time.strip() for time in data[1].split(":")[-1].strip().split(" ") if time.strip() != ""]))
-        print(f"Times: {self.new_time}\nDistances: {self.new_distance}")
 
     def solve_race(self, time, dist):
         """
