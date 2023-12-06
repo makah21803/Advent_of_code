@@ -37,12 +37,12 @@ class BoatRace():
             upper_bound = upper_bound - 1
         upper_bound = math.floor(upper_bound)
 
-        return [i for i in range(lover_bound, upper_bound + 1)]
+        return upper_bound - lover_bound +1
 
     def task_one(self):
         number_of_options = []
         for i, time in enumerate(self.times):
-            number_of_options.append(len(self.solve_race(time, self.distances[i])))
+            number_of_options.append(self.solve_race(time, self.distances[i]))
 
         result = 1
         for num in number_of_options:
@@ -50,7 +50,7 @@ class BoatRace():
         return result
 
     def task_two(self):
-        return len(self.solve_race(self.new_time, self.new_distance))
+        return self.solve_race(self.new_time, self.new_distance)
 
 
 
